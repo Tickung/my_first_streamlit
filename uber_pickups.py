@@ -36,6 +36,49 @@ team_logo_urls = {
 # Add the logo URLs to the dataframe
 df['Logo_URL'] = df['Squad'].map(team_logo_urls)
 st.dataframe(df.head())
+# สร้าง HTML สำหรับรูปภาพ
+def path_to_image_html(path):
+    return f'<img src="{path}" width="40" style="border-radius:5px;">'
+
+# สร้าง HTML ของตารางแบบมีสไตล์
+df_html = df.head(20).to_html(escape=False, formatters={'Logo_URL': path_to_image_html})
+
+# CSS สำหรับความสวยงาม
+styled_html = f"""
+<style>
+    table {{
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+    }}
+    th {{
+        background-color: #003366;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }}
+    td {{
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }}
+    tr:hover {{
+        background-color: #f2f2f2;
+    }}
+    img {{
+        vertical-align: middle;
+    }}
+</style>
+<div style="overflow-x:auto;">
+  {df_html}
+</div>
+"""
+
+# แสดงผลใน Streamlit
+st.components.v1.html(styled_html, height=600, scrolling=True)
+
+
 
 
 # st.subheader('go')
