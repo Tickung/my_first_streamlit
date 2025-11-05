@@ -8,7 +8,7 @@ import plotly.express as px
 
 st.title('Streamlit Learning')
 
-st.subheader('go')
+st.subheader('use go')
 fig = go.Figure()
 fig.add_trace(
     go.Scatter(
