@@ -1,6 +1,21 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.figure_factory as ff
+from numpy.random import default_rng as rng
+
+hist_data = [
+    rng(0).standard_normal(200) - 2,
+    rng(1).standard_normal(200),
+    rng(2).standard_normal(200) + 2,
+]
+group_labels = ["Group 1", "Group 2", "Group 3"]
+
+fig = ff.create_distplot(
+    hist_data, group_labels, bin_size=[0.1, 0.25, 0.5]
+)
+
+st.plotly_chart(fig)
 
 st.title('Uber pickups in NYC245654')
 
@@ -39,3 +54,4 @@ filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 st.subheader(f'Map of all pickups at {hour_to_filter}:00')
 
 st.map(filtered_data)
+
