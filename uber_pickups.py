@@ -7,54 +7,26 @@ import plotly.graph_objects as go
 import plotly.express as px
 from IPython.display import HTML 
 
-st.title('Streamlit Learning2')
-df = pd.read_csv("https://raw.githubusercontent.com/Tickung/DADS5001/refs/heads/main/premier_league.csv")
-# Dictionary of team names to logo URLs (example - actual URLs may vary and need updating)
-team_logo_urls = {
-    'Arsenal': 'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg',
-    'Bournemouth': 'https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%282013%29.svg',
-    'Tottenham': 'https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg',
-    'Sunderland': 'https://upload.wikimedia.org/wikipedia/hif/e/e0/Logo_Sunderland.png',
-    'Manchester City': 'https://upload.wikimedia.org/wikipedia/sco/e/eb/Manchester_City_FC_badge.svg',
-    'Manchester Utd': 'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg',
-    'Liverpool': 'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg',
-    'Aston Villa': 'https://upload.wikimedia.org/wikipedia/hif/5/57/Aston_Villa.png',
-    'Chelsea': 'https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg',
-    'Newcastle Utd': 'https://upload.wikimedia.org/wikipedia/hif/2/25/Newcastle_United_Logo.png',
-    'Brentford': 'https://upload.wikimedia.org/wikipedia/en/2/2a/Brentford_FC_crest.svg',
-    'Brighton': 'https://upload.wikimedia.org/wikipedia/sco/f/fd/Brighton_%26_Hove_Albion_logo.svg',
-    'Crystal Palace': 'https://upload.wikimedia.org/wikipedia/sco/0/0c/Crystal_Palace_FC_logo.svg',
-    'Everton': 'https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg',
-    'Leeds United': 'https://upload.wikimedia.org/wikipedia/en/5/54/Leeds_United_F.C._logo.svg',
-    'Burnley': 'https://upload.wikimedia.org/wikipedia/en/6/6d/Burnley_FC_Logo.svg',
-    'Fulham': 'https://upload.wikimedia.org/wikipedia/en/e/eb/Fulham_FC_%28shield%29.svg',
-    'Nott\'ham Forest': 'https://upload.wikimedia.org/wikipedia/en/e/e5/Nottingham_Forest_F.C._logo.svg',
-    'West Ham': 'https://upload.wikimedia.org/wikipedia/en/c/c2/West_Ham_United_FC_logo.svg',
-    'Wolves': 'https://upload.wikimedia.org/wikipedia/sco/f/fc/Wolverhampton_Wanderers.svg'
-}
+st.title('Streamlit Learning')
 
-# Add the logo URLs to the dataframe
-df['Logo_URL'] = df['Squad'].map(team_logo_urls)
-def path_to_image_html(path):
-    return f'<img src="{path}" width="30" >'
+st.subheader('go')
+fig = go.Figure()
+fig.add_trace(
+    go.Scatter(
+        x=[1, 2, 3, 4, 5],
+        y=[1, 3, 2, 5, 4]
+    )
+)
 
-# Apply the function to the 'Logo_URL' column and display the table
-df_html = df.to_html(escape=False, formatters=dict(Logo_URL=path_to_image_html))
+st.plotly_chart(fig, config = {'scrollZoom': False})
 
-st.components.v1.html(df_html, height=300, scrolling=True)
+st.subheader('express')
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length")
 
+event = st.plotly_chart(fig, key="iris", on_select="rerun")
 
-st.dataframe(df.head())
-fig = px.scatter(df,
-                 x="xG",
-                 y="xGA",
-                 size="Pts",
-                 hover_name="Squad",
-                 title="xG vs. xGA with Pts as Bubble Size (Plotly)")
-
-st.plotly_chart(fig, use_container_width=True)
-
-
+event
 
 st.subheader('Learning section')
 DATE_COLUMN = 'date/time'
