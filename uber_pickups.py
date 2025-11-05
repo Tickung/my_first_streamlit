@@ -1,9 +1,33 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.figure_factory as ff
+from numpy.random import default_rng as rng
+import plotly.graph_objects as go
+import plotly.express as px
 
-st.title('Uber pickups in NYC245654')
+st.title('Streamlit Learning')
 
+st.subheader('go')
+fig = go.Figure()
+fig.add_trace(
+    go.Scatter(
+        x=[1, 2, 3, 4, 5],
+        y=[1, 3, 2, 5, 4]
+    )
+)
+
+st.plotly_chart(fig, config = {'scrollZoom': False})
+
+st.subheader('express')
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length")
+
+event = st.plotly_chart(fig, key="iris", on_select="rerun")
+
+event
+
+st.subheader('Learning section')
 DATE_COLUMN = 'date/time'
 DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
          'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
