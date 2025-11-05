@@ -5,9 +5,9 @@ import plotly.figure_factory as ff
 from numpy.random import default_rng as rng
 import plotly.graph_objects as go
 import plotly.express as px
-from IPython.display import HTML
+from IPython.display import HTML 
 
-st.title('Streamlit Learning')
+st.title('Streamlit Learning2')
 df = pd.read_csv("https://raw.githubusercontent.com/Tickung/DADS5001/refs/heads/main/premier_league.csv")
 # Dictionary of team names to logo URLs (example - actual URLs may vary and need updating)
 team_logo_urls = {
