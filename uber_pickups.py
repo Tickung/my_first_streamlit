@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 import plotly.express as px
 from IPython.display import HTML 
 
+
+'''
 st.title('Streamlit Learning week12')
 df = pd.read_csv("https://raw.githubusercontent.com/Tickung/DADS5001/refs/heads/main/premier_league.csv")
 # Dictionary of team names to logo URLs (example - actual URLs may vary and need updating)
@@ -136,5 +138,5 @@ filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 st.subheader(f'Map of all pickups at {hour_to_filter}:00')
 
 st.map(filtered_data)
-
+'''
 
