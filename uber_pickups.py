@@ -80,9 +80,6 @@ styled_html = f"""
 # แสดงผลใน Streamlit
 st.components.v1.html(styled_html, height=600, scrolling=True)
 
-
-
-
 # st.subheader('go')
 # fig = go.Figure()
 # fig.add_trace(
