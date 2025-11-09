@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from IPython.display import HTML 
 
-st.title('Streamlit Learning')
+st.title('Streamlit Learning week12')
 df = pd.read_csv("https://raw.githubusercontent.com/Tickung/DADS5001/refs/heads/main/premier_league.csv")
 # Dictionary of team names to logo URLs (example - actual URLs may vary and need updating)
 team_logo_urls = {
